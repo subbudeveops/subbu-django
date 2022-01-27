@@ -1,0 +1,13 @@
+<html>
+<head>
+<body>
+<h1> Formset</h1>
+<form method="POST" enctype="multipart/form-data">
+     {{ formset.management_data }}
+    {% csrf_token %}
+    {{ formset.as_p }}
+    <input type="submit" value="submit">
+</form>
+</body>
+</head>
+</html>
