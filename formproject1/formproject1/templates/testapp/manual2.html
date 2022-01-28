@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link 
+     rel="stylesheet"
+     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        .i-am-centered {
+            margin: auto;
+            max-width: 300px;
+            padding-top: 20%;
+        }
+    </style>
+</head>
+<body>
+<div class="i-am-center">
+  <h1> Basic Form</h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+<div class="fieldWrapper">
+    {{ form.name.errors }}
+    <label for="{{ form.name.id_for_label }}">Enter Your Name:</label>
+    {{ form.name }}
+</div>
+<div class="fieldWrapper">
+    {{ form.email.errors }}
+    <label for="{{ form.email.id_for_label }}">Your Email Id:</label>
+    {{ form.email }}
+</div>
+<div class="fieldWrapper">
+    {{ form.feedback.errors }}
+    <label for="{{ form.feedback.id_for_label }}">Your FeedBack:</label>
+    {{ form.feedback }}
+</div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    
+  </form>
+</div>
+</body>
+</html>
