@@ -1,0 +1,37 @@
+{% extends 'testapp/basic.html' %}
+{% load crispy_forms_tags %} 
+{%block content%}
+
+<div class="container">
+   
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+        <h2>Form</h2></br></br>
+
+
+            <form action="" method="post">
+             {%csrf_token %}
+             
+            {{form|crispy}}</br><br>
+                </div>
+            </div>
+
+           
+            <input type="Submit" value="submit">
+           
+                
+ 
+ 
+            
+           
+            </form>
+       
+        </div>
+
+    </div>
+
+ 
+</body>
+ 
+</html>
+{%endblock%}

@@ -10,6 +10,8 @@ def Form_view(request):
       print('name:',form.cleaned_data['name'])
       #print('date:',form.cleaned_data['date']) date is not showing in browser
       print('email:',form.cleaned_data['email'])
+      temp=form.cleaned_data.get['email']
+      print(temp)
       print('feedback:',form.cleaned_data['feedback'])
   return render(request,'testapp/home.html',{'form':form})
 

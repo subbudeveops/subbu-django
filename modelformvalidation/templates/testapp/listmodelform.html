@@ -1,0 +1,45 @@
+{% extends 'testapp/basic.html' %}
+
+{%block content%}
+
+<div class="container">
+   
+    <div class="row" >
+        <div class="col-lg-6 col-md-12 ">
+        <h2>Display Information</h2></br>
+
+            {% for list in model_list %}
+            <div class="card">
+                <div class="card-header">
+                  <strong>{{list.username}}</strong>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong> UserName: </strong>{{list.username}} </p>
+                    <p class="card-text"> <strong>Text:  </strong>{{list.text}} </p>
+                    <p class="card-text"><strong> Gender: </strong>{{list.gender}} </p>
+                    <p class="card-text"><strong> SubmitTime: </strong>{{list.time}} </p>
+
+
+
+               
+               
+                </div>
+            </div>
+            {%endfor%}
+
+                
+ 
+ 
+            
+           
+           
+       
+        </div>
+
+    </div>
+
+ 
+</body>
+ 
+</html>
+{%endblock%}
