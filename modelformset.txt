@@ -1,0 +1,125 @@
+# import the standard Django Model
+# from built-in library
+from django.db import models
+
+# declare a new model with a name "GeeksModel"
+class GeeksModel(models.Model):
+
+	# fields of the model
+	title = models.CharField(max_length = 200)
+	description = models.TextField()
+
+	# renames the instances of the model
+	# with their title name
+	def __str__(self):
+		return self.title
+
+
+from django.shortcuts import render
+
+# relative import of forms
+from .forms import GeeksForm
+
+# importing formset_factory
+from django.forms import formset_factory
+
+def formset_view(request):
+	context ={}
+
+	# creating a formset
+	GeeksFormSet = modelformset_factory(GeeksForm)
+	formset = GeeksFormSet()
+	
+	# Add the formset to context dictionary
+	context['formset']= formset
+	return render(request, "home.html", context)
+
+
+<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ formset.as_p }}
+	<input type="submit" value="Submit">
+</form>
+
+
+How to create Multiple forms using Django ModelFormsets
+Django formsets are used to handle multiple instances of a form. One can create multiple forms easily using extra attribute of Django Formsets. In geeks/views.py,
+
+from django.shortcuts import render
+  
+# relative import of forms
+from .models import GeeksModel
+  
+# importing formset_factory
+from django.forms import modelformset_factory
+  
+def modelformset_view(request):
+    context ={}
+  
+    # creating a formset and 5 instances of GeeksForm
+    GeeksFormSet = modelformset_factory(GeeksModel, fields =['title', 'description'], extra = 3)
+    formset = GeeksFormSet()
+  
+              
+    # Add the formset to context dictionary
+    context['formset']= formset
+    return render(request, "home.html", context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form method="POST" enctype="multipart/form-data">
+	
+	<!-- Management data of formset -->
+	{{ formset.management_data }}
+
+	<!-- Security token -->
+	{% csrf_token %}
+
+	<!-- Using the formset -->
+	{{ formset.as_p }}
+	
+	<input type="submit" value="Submit">
+</form>
+
+
+
+from django.shortcuts import render
+
+# relative import of forms
+from .forms import GeeksForm
+
+# importing formset_factory
+from django.forms import formset_factory
+
+def formset_view(request):
+	context ={}
+
+	# creating a formset and 5 instances of GeeksForm
+	GeeksFormSet = formset_factory(GeeksForm, extra = 3)
+	formset = GeeksFormSet(request.POST or None)
+	
+	# print formset data if it is valid
+	if formset.is_valid():
+		for form in formset:
+			print(form.cleaned_data)
+			
+	# Add the formset to context dictionary
+	context['formset']= formset
+	return render(request, "home.html", context)
+
+
+
+
+

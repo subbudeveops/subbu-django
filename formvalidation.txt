@@ -1,0 +1,61 @@
+from django import forms
+
+class GeeksForm(forms.Form):
+	geeks_field = forms.CharField(
+				error_messages = {
+				'required':"Please Enter your Name"
+				})
+
+
+from django.shortcuts import render
+from .forms import GeeksForm
+
+# Create your views here.
+def home_view(request):
+	context = {}
+	form = GeeksForm(request.POST or None)
+	context['form'] = form
+	if request.POST:
+		if form.is_valid():
+			temp = form.cleaned_data.get("geeks_field")
+			print(temp)
+	return render(request, "home.html", context)
+
+
+
+<form method = "POST">
+	{% csrf_token %}
+	{{ form }}
+	<input type = "submit" value = "Submit">
+</form>
+
+
+
+from django.db import models
+from django.db.models import Model
+# Create your models here.
+
+class GeeksModel(Model):
+	geeks_field = models.CharField(
+					max_length = 200,
+					unique = True
+					)
+
+
+
+from django.db import models
+from django.db.models import Model
+# Create your models here.
+
+class GeeksModel(Model):
+	geeks_field = models.CharField(
+					max_length = 200,
+					unique = True,
+					error_messages ={
+					"unique":"The Geeks Field you entered is not unique."
+					}
+					)
+
+
+
+
