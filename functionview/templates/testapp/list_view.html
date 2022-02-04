@@ -1,0 +1,12 @@
+{% extends 'testapp/basic.html'%}
+{%load crispy_forms_tags %}
+{%block content%}
+    <hr class="main">
+    {% for d in data %}
+    {{d.title}}</br>
+    {{d.desc}}</br><hr/>
+    {% endfor %}
+
+        
+</div>
+{% endblock%}
