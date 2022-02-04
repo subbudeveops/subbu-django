@@ -32,11 +32,18 @@ def detail_view(request, id):
 
 
 def update_view(request, id):
-    obj = get_object_or_404(SubbuModel, id=id)
+    obj = SubbuModel.objects.get(id=id)
 
-    form = SubbuForm(request.POST or None, instance=obj)
+    form = SubbuForm(request.POST or None,instance=obj)
     if form.is_valid():
         form.save()
         return HttpResponseRedirect('/'+id)
 
-    return redirect(request, 'testapp/update_view.html', {'form': form})
+    return render(request, 'testapp/update_view.html', {'form': form,'obj':obj})
+
+def delete_view(request,id):
+    obj=SubbuModel.objects.get(id=id)
+    if request.method=="POST":
+        obj.delete()
+        return HttpResponse("sucessfully deleted")
+    return render(request, 'testapp/delete_view.html', {'obj':obj})
