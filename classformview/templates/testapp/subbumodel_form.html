@@ -1,0 +1,14 @@
+
+{% extends 'testapp/basic.html'%}
+
+{%block content%}
+
+<div class="container">
+    <form method="POST">
+        {{form.as_p}}<br>
+        {%csrf_token%}
+
+        <input type="submit" value="submit">
+    </form>
+</div>
+{% endblock%}
